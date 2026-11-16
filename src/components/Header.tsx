@@ -16,8 +16,8 @@ export function Header() {
   const whatsappHref = buildWhatsAppUrl(SITE_CONFIG.generalWhatsappMessage);
 
   return (
-    <header className="sticky top-0 z-30 bg-[#FAF8F5]/95 backdrop-blur-sm border-b border-[#E5E0D8]">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between gap-6">
+    <header className="sticky top-0 z-30 bg-[#F9F5EE]/95 backdrop-blur-sm border-b border-[#E2D9CB]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[74px] flex items-center justify-between gap-6">
         <a
           href="#inicio"
           aria-label="Caminemos Juntos — Ir al inicio"
@@ -34,7 +34,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[0.95rem] font-medium text-[#3F3A36] hover:text-[#1A1918] hover:underline underline-offset-8 decoration-2 py-2 whitespace-nowrap shrink-0 transition-colors"
+              className="text-[0.95rem] font-medium text-[#4A4037] hover:text-[#231D18] hover:underline underline-offset-8 decoration-[#8B5E3C] decoration-2 py-2 whitespace-nowrap shrink-0 transition-colors"
             >
               {link.label}
             </a>
@@ -47,7 +47,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Ver Instagram de Caminemos Juntos"
-            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 transition-all"
+            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-all"
           >
             <Instagram className="w-5 h-5 shrink-0" aria-hidden="true" />
             <span>Instagram</span>
@@ -57,7 +57,7 @@ export function Header() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 transition-colors"
+            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-colors"
           >
             <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
             <span>WhatsApp</span>
@@ -68,7 +68,7 @@ export function Header() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="menu-movil"
-            className="xl:hidden inline-flex items-center justify-center gap-2 min-h-[48px] px-4 rounded-xl border border-[#D4CEC3] bg-white text-[#1A1918] font-semibold text-base whitespace-nowrap shrink-0 hover:bg-[#F2EFEA] transition-colors"
+            className="xl:hidden inline-flex items-center justify-center gap-2 min-h-[48px] px-4 rounded-xl border border-[#D4C9B8] bg-[#FFFDF9] text-[#231D18] font-semibold text-base whitespace-nowrap shrink-0 hover:bg-[#F1EAE0] transition-colors"
           >
             {mobileMenuOpen ? (
               <>
@@ -89,7 +89,7 @@ export function Header() {
         <nav
           id="menu-movil"
           aria-label="Menú móvil"
-          className="xl:hidden border-t border-[#E5E0D8] bg-[#FAF8F5] px-4 sm:px-6 py-4"
+          className="xl:hidden border-t border-[#E2D9CB] bg-[#F9F5EE] px-4 sm:px-6 py-4"
         >
           <ul className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
@@ -97,14 +97,14 @@ export function Header() {
                 <a
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center min-h-[52px] px-4 rounded-xl text-lg font-medium text-[#1A1918] hover:bg-[#EFEAE2] transition-colors"
+                  className="flex items-center min-h-[52px] px-4 rounded-xl text-lg font-medium text-[#231D18] hover:bg-[#EFE6D8] transition-colors"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="mt-4 pt-4 border-t border-[#E5E0D8] flex flex-col gap-3">
+          <div className="mt-4 pt-4 border-t border-[#E2D9CB] flex flex-col gap-3">
             <a
               href={SITE_CONFIG.instagramUrl}
               target="_blank"

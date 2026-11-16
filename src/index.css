@@ -9,8 +9,8 @@
   html {
     font-size: 18px;
     font-family: var(--font-sans);
-    background-color: #faf8f5;
-    color: #1a1918;
+    background-color: #f9f5ee;
+    color: #231d18;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
@@ -32,8 +32,8 @@
   body {
     margin: 0;
     line-height: 1.65;
-    background-color: #faf8f5;
-    color: #1a1918;
+    background-color: #f9f5ee;
+    color: #231d18;
   }
 
   h1,
@@ -43,13 +43,18 @@
     text-wrap: balance;
   }
 
+  ::selection {
+    background-color: #e6d8c3;
+    color: #231d18;
+  }
+
   :focus-visible {
-    outline: 3px solid #1a1918;
+    outline: 3px solid #231d18;
     outline-offset: 3px;
   }
 
   .dark-surface :focus-visible {
-    outline: 3px solid #faf8f5;
+    outline: 3px solid #fbf8f3;
     outline-offset: 3px;
   }
 }
