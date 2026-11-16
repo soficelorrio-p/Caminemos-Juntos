@@ -16,8 +16,8 @@ export function Header() {
   const whatsappHref = buildWhatsAppUrl(SITE_CONFIG.generalWhatsappMessage);
 
   return (
-    <header className="sticky top-0 z-30 bg-[#F9F5EE]/95 backdrop-blur-sm border-b border-[#E2D9CB]">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[74px] flex items-center justify-between gap-6">
+    <header className="sticky top-0 z-30 bg-[#FAF8F4]/95 backdrop-blur-sm border-b border-[#E5DFD3]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-6">
         <a
           href="#inicio"
           aria-label="Caminemos Juntos — Ir al inicio"
@@ -34,7 +34,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[0.95rem] font-medium text-[#4A4037] hover:text-[#231D18] hover:underline underline-offset-8 decoration-[#8B5E3C] decoration-2 py-2 whitespace-nowrap shrink-0 transition-colors"
+              className="text-[0.95rem] font-medium text-[#3F3B36] hover:text-[#16294E] hover:underline underline-offset-8 decoration-[#8E3F27] decoration-2 py-2 whitespace-nowrap shrink-0 transition-colors"
             >
               {link.label}
             </a>
@@ -68,7 +68,7 @@ export function Header() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="menu-movil"
-            className="xl:hidden inline-flex items-center justify-center gap-2 min-h-[48px] px-4 rounded-xl border border-[#D4C9B8] bg-[#FFFDF9] text-[#231D18] font-semibold text-base whitespace-nowrap shrink-0 hover:bg-[#F1EAE0] transition-colors"
+            className="xl:hidden inline-flex items-center justify-center gap-2 min-h-[48px] px-4 rounded-xl border border-[#D8D0C2] bg-white text-[#18181B] font-semibold text-base whitespace-nowrap shrink-0 hover:bg-[#F3EFE6] transition-colors"
           >
             {mobileMenuOpen ? (
               <>
@@ -89,7 +89,7 @@ export function Header() {
         <nav
           id="menu-movil"
           aria-label="Menú móvil"
-          className="xl:hidden border-t border-[#E2D9CB] bg-[#F9F5EE] px-4 sm:px-6 py-4"
+          className="xl:hidden border-t border-[#E5DFD3] bg-[#FAF8F4] px-4 sm:px-6 py-4"
         >
           <ul className="flex flex-col gap-2">
             {NAV_LINKS.map((link) => (
@@ -97,14 +97,14 @@ export function Header() {
                 <a
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center min-h-[52px] px-4 rounded-xl text-lg font-medium text-[#231D18] hover:bg-[#EFE6D8] transition-colors"
+                  className="flex items-center min-h-[52px] px-4 rounded-xl text-lg font-medium text-[#18181B] hover:bg-[#EFEAE0] transition-colors"
                 >
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <div className="mt-4 pt-4 border-t border-[#E2D9CB] flex flex-col gap-3">
+          <div className="mt-4 pt-4 border-t border-[#E5DFD3] flex flex-col gap-3">
             <a
               href={SITE_CONFIG.instagramUrl}
               target="_blank"

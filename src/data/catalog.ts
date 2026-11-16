@@ -16,11 +16,13 @@ export interface CaneProduct {
   detailImage: string;
   detailAlt: string;
   whatsappMessage: string;
+  accentHex: string;
+  matTintHex: string;
 }
 
 /**
  * CONFIGURACIÓN EDITABLE DE CAMINEMOS JUNTOS (CJ)
- * Modificá aquí el número de WhatsApp, teléfono, correo y textos principales.
+ * Modificá aquí el número de WhatsApp, teléfono, Instagram y textos principales.
  * El número de WhatsApp debe ir con código de país y sin símbolos (ej: "5491112345678").
  */
 export const SITE_CONFIG = {
@@ -49,62 +51,55 @@ export const HERO_CONTENT = {
     'Diseños pensados para que cada paso sea más cómodo, seguro y con estilo.',
   primaryCta: 'Ver bastones',
   secondaryCta: 'Consultar por WhatsApp',
-  heroImage: '/src/assets/images/hero_baston_principal_1794832406587.jpg',
+  heroImage: '/src/assets/images/hero_baston_arte_1794856236209.jpg',
   heroImageAlt:
-    'Bastón elegante con mango de madera tallada y diseño botánico en vinilo apoyado suavemente sobre un sillón luminoso',
+    'Bastón intervenido con diseño floral colorido en un taller artístico luminoso junto a girasoles y un jarrón azul cobalto',
 } as const;
 
 export const CUSTOM_CONTENT = {
-  title: 'Diseños personalizados a consulta',
+  title: 'Diseños personalizados',
   description:
-    'Además de nuestros diseños disponibles, también podés consultarnos por opciones personalizadas para encontrar un bastón que vaya con tu estilo.',
-  availabilityNote:
-    'Cada diseño personalizado se conversa y evalúa según disponibilidad antes de confirmarlo.',
+    'Además de nuestros modelos, podés consultarnos por opciones personalizadas según tu estilo (sujeto a disponibilidad).',
   ctaLabel: 'Quiero consultar un diseño personalizado',
+  studioImage: '/src/assets/images/vinilos_arte_taller_1794856236121.jpg',
+  studioImageAlt:
+    'Muestrario colorido de vinilos artísticos con flores, tramas geométricas azules y botánicas junto a mangos de madera en el taller',
 } as const;
 
 export const ABOUT_CONTENT = {
   title: 'Sobre nosotros',
   leadParagraph:
-    'En Caminemos Juntos creemos que usar un bastón también puede ser una experiencia más amable, personal y cómoda. Por eso trabajamos con diseños que ayudan a que cada persona se sienta identificada con el bastón que usa.',
-  bodyParagraph:
-    'Acompañamos a personas mayores y a sus familias para que el bastón deje de sentirse como algo frío o incómodo, y pase a ser un objeto práctico, firme y lindo para usar todos los días.',
+    'En Caminemos Juntos creemos que usar un bastón también puede ser una experiencia más amable, personal y cómoda. Trabajamos con diseños únicos para que cada persona se sienta identificada y segura al usarlo.',
   image: '/src/assets/images/sobre_nosotros_taller_1794832411962.jpg',
   imageAlt:
     'Manos artesanales aplicando cuidadosamente un vinilo botánico sobre el cuerpo de un bastón en un taller luminoso',
-  pillars: [
-    'Vinilos impresos de alta duración aplicados con cuidado artesanal.',
-    'Todos nuestros bastones son de altura fija (no regulables) para brindar mayor firmeza.',
-    'Te asesoramos personalmente por WhatsApp para elegir la medida correcta.',
-  ],
 } as const;
 
 export const HOW_IT_WORKS_STEPS = [
   {
     number: '1',
-    title: 'Elegí el diseño que más te guste',
+    title: 'Elegí el diseño',
     description:
-      'Mirá los modelos disponibles, alterná entre la foto general y el detalle del vinilo, y tocá Ver detalle para conocer su descripción y altura.',
+      'Mirá las fotos y tocá Ver detalle para conocer su descripción y altura.',
   },
   {
     number: '2',
     title: 'Consultanos por WhatsApp',
     description:
-      'Tocá el botón verde del modelo que te interesó o escribinos directamente. No hay carritos ni formularios difíciles.',
+      'Tocá el botón del modelo que te gustó para escribirnos directamente.',
   },
   {
     number: '3',
-    title: 'Te ayudamos a encontrar la mejor opción',
+    title: 'Te asesoramos',
     description:
-      'Conversamos con vos o con un familiar para confirmar la altura adecuada, responder dudas y coordinar el envío o retiro.',
+      'Confirmamos juntos la altura adecuada y coordinamos la entrega.',
   },
 ] as const;
 
 export const CONTACT_CONTENT = {
-  title:
-    '¿Querés encontrar un bastón que te haga sentir más cómodo y seguro? Estamos para ayudarte.',
+  title: '¿Te ayudamos a elegir tu bastón?',
   subtitle:
-    'Escribinos por WhatsApp o llamanos por teléfono. Respondemos con paciencia y claridad para ayudarte a elegir.',
+    'Escribinos por WhatsApp o llamanos para recibir asesoramiento personalizado.',
   whatsappCta: 'Consultar ahora por WhatsApp',
 } as const;
 
@@ -126,7 +121,7 @@ export const PRODUCTS: CaneProduct[] = [
     description:
       'Un diseño sereno con hojas naturales en tonos oliva que aporta frescura y calidez para el uso diario.',
     extendedDescription:
-      'Pensado para quienes disfrutan de los motivos naturales y tranquilos. El vinilo botánico se aplica con terminación satinada suave al tacto y resistente al roce diario. Su mango clásico anatómico acompaña la palma de la mano de forma cómoda y segura.',
+      'Pensado para quienes disfrutan de los motivos naturales y luminosos. El vinilo botánico se aplica con terminación satinada suave al tacto y resistente al roce diario. Su mango clásico anatómico acompaña la palma de la mano de forma cómoda y segura.',
     generalImage: '/src/assets/images/baston_botanico_general_1794832407309.jpg',
     generalAlt:
       'Vista completa del bastón Modelo Olivo Botánico con mango negro ergonómico y vinilo de hojas verde oliva',
@@ -135,6 +130,8 @@ export const PRODUCTS: CaneProduct[] = [
       'Primer plano del detalle del vinilo botánico con hojas de olivo aplicado sobre el bastón',
     whatsappMessage:
       'Hola, quiero consultar por el bastón Modelo Olivo Botánico (Primera colección, 88 cm).',
+    accentHex: '#15603E',
+    matTintHex: '#EAF5EE',
   },
   {
     id: 'indigo-clasico',
@@ -148,7 +145,7 @@ export const PRODUCTS: CaneProduct[] = [
     description:
       'Trama sobria y distinguida en azul profundo con líneas arena, pensada para combinar con cualquier vestimenta.',
     extendedDescription:
-      'Ideal para quienes prefieren un estilo clásico y discreto, fácil de combinar tanto en salidas cotidianas como en ocasiones especiales. Su estructura fija evita ruidos o movimientos indeseados al caminar y brinda un apoyo estable en todo momento.',
+      'Ideal para quienes prefieren un estilo artístico geométrico en azul profundo, fácil de combinar tanto en salidas cotidianas como en ocasiones especiales. Su estructura fija evita ruidos o movimientos indeseados al caminar y brinda un apoyo estable en todo momento.',
     generalImage: '/src/assets/images/baston_indigo_general_1794832408102.jpg',
     generalAlt:
       'Vista completa del bastón Modelo Índigo Clásico con mango negro anatómico y diseño geométrico azul índigo',
@@ -157,6 +154,8 @@ export const PRODUCTS: CaneProduct[] = [
       'Primer plano del vinilo impreso geométrico azul índigo y arena sobre el cuerpo del bastón',
     whatsappMessage:
       'Hola, quiero consultar por el bastón Modelo Índigo Clásico (Primera colección, 90 cm).',
+    accentHex: '#1E40AF',
+    matTintHex: '#EBF1FD',
   },
   {
     id: 'nogal-espiga',
@@ -179,6 +178,8 @@ export const PRODUCTS: CaneProduct[] = [
       'Primer plano de la unión entre el mango de madera de nogal y el vinilo impreso con diseño espiga',
     whatsappMessage:
       'Hola, quiero consultar por el bastón Modelo Nogal Espiga (Nueva colección mango de madera, 92 cm).',
+    accentHex: '#9A3412',
+    matTintHex: '#FDF1E8',
   },
   {
     id: 'roble-terracota',
@@ -192,7 +193,7 @@ export const PRODUCTS: CaneProduct[] = [
     description:
       'Mango cálido en madera natural combinado con un vinilo de trazos geométricos suaves en tonos tierra.',
     extendedDescription:
-      'Un modelo con mucha personalidad y armonía visual. El mango en madera natural ofrece un agarre cálido y firme, mientras que el vinilo en tonos terracota, arena y espresso aporta un detalle artístico delicado y moderno.',
+      'Un modelo con mucha personalidad y armonía visual. El mango en madera natural ofrece un agarre cálido y firme, mientras que el vinilo en tonos terracota, arena y espresso aporta un detalle artístico delicado y alegre.',
     generalImage: '/src/assets/images/baston_terracota_general_1794832410589.jpg',
     generalAlt:
       'Vista completa del bastón Modelo Roble Terracota con mango de madera clara y vinilo geométrico cálido',
@@ -201,5 +202,7 @@ export const PRODUCTS: CaneProduct[] = [
       'Primer plano del mango de roble natural junto al vinilo impreso en tonos terracota y arena',
     whatsappMessage:
       'Hola, quiero consultar por el bastón Modelo Roble Terracota (Nueva colección mango de madera, 89 cm).',
+    accentHex: '#B93822',
+    matTintHex: '#FCEEEB',
   },
 ];

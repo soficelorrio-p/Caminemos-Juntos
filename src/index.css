@@ -9,8 +9,8 @@
   html {
     font-size: 18px;
     font-family: var(--font-sans);
-    background-color: #f9f5ee;
-    color: #231d18;
+    background-color: #faf8f4;
+    color: #18181b;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
   }
@@ -32,8 +32,8 @@
   body {
     margin: 0;
     line-height: 1.65;
-    background-color: #f9f5ee;
-    color: #231d18;
+    background-color: #faf8f4;
+    color: #18181b;
   }
 
   h1,
@@ -44,17 +44,37 @@
   }
 
   ::selection {
-    background-color: #e6d8c3;
-    color: #231d18;
+    background-color: #dbeafe;
+    color: #16294e;
   }
 
   :focus-visible {
-    outline: 3px solid #231d18;
+    outline: 3px solid #16294e;
     outline-offset: 3px;
   }
 
   .dark-surface :focus-visible {
-    outline: 3px solid #fbf8f3;
+    outline: 3px solid #faf8f4;
     outline-offset: 3px;
   }
+}
+
+.bg-atelier-canvas {
+  background-color: #faf8f4;
+  background-image:
+    radial-gradient(ellipse at top right, rgba(243, 229, 204, 0.55) 0%, transparent 55%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%238E6B47' stroke-width='0.9' stroke-opacity='0.09'%3E%3Cpath d='M60 12c8 14 8 30 0 44-8-14-8-30 0-44z'/%3E%3Cpath d='M60 64c8 14 8 30 0 44-8-14-8-30 0-44z'/%3E%3Cpath d='M12 60c14-8 30-8 44 0-14 8-30 8-44 0z'/%3E%3Cpath d='M64 60c14-8 30-8 44 0-14 8-30 8-44 0z'/%3E%3Ccircle cx='60' cy='60' r='3.5'/%3E%3Ccircle cx='0' cy='0' r='16'/%3E%3Ccircle cx='120' cy='0' r='16'/%3E%3Ccircle cx='0' cy='120' r='16'/%3E%3Ccircle cx='120' cy='120' r='16'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-atelier-stone {
+  background-color: #f3efe6;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%238E3F27' stroke-width='0.75' stroke-opacity='0.075'%3E%3Cpath d='M32 8v48M8 32h48'/%3E%3Ccircle cx='32' cy='32' r='14'/%3E%3Ccircle cx='0' cy='0' r='6'/%3E%3Ccircle cx='64' cy='0' r='6'/%3E%3Ccircle cx='0' cy='64' r='6'/%3E%3Ccircle cx='64' cy='64' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-atelier-prussian {
+  background-color: #16294e;
+  background-image:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23FAF8F4' stroke-width='0.9' stroke-opacity='0.065'%3E%3Cpath d='M60 14c7 13 7 28 0 42-7-14-7-29 0-42z'/%3E%3Cpath d='M60 64c7 13 7 28 0 42-7-14-7-29 0-42z'/%3E%3Cpath d='M14 60c13-7 28-7 42 0-14 7-29 7-42 0z'/%3E%3Cpath d='M64 60c13-7 28-7 42 0-14 7-29 7-42 0z'/%3E%3Ccircle cx='60' cy='60' r='4'/%3E%3Ccircle cx='0' cy='0' r='18'/%3E%3Ccircle cx='120' cy='0' r='18'/%3E%3Ccircle cx='0' cy='120' r='18'/%3E%3Ccircle cx='120' cy='120' r='18'/%3E%3C/g%3E%3C/svg%3E");
 }

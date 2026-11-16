@@ -34,7 +34,7 @@ export function BrandMark({ inverted = false }: BrandMarkProps) {
 
       <span
         className={`font-display text-[1.3rem] font-bold tracking-normal whitespace-nowrap shrink-0 ${
-          inverted ? 'text-[#FAF6EF]' : 'text-[#231D18]'
+          inverted ? 'text-[#FAF8F4]' : 'text-[#18181B]'
         }`}
       >
         Caminemos Juntos
