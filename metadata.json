@@ -1,0 +1,6 @@
+{
+  "name": "Caminemos Juntos (CJ) — Bastones con diseño y estilo personal",
+  "description": "Bastones de altura fija intervenidos con diseños en vinilo pensados para acompañar a personas mayores con comodidad, seguridad y estilo personal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
