@@ -209,8 +209,8 @@ export default function App() {
           className="py-14 sm:py-24 bg-atelier-prussian text-white dark-surface"
         >
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-              <div className="lg:col-span-7 lg:order-2">
+            <div className="grid grid-cols-1 lg:grid-cols-12 lg:gap-10 xl:gap-12 items-center">
+              <div className="lg:col-span-6 lg:order-2">
                 <div className="p-2.5 sm:p-3 rounded-t-[6rem] sm:rounded-t-[9rem] rounded-b-3xl bg-white shadow-2xl">
                   <div className="aspect-[4/3] rounded-t-[5.25rem] sm:rounded-t-[8rem] rounded-b-2xl overflow-hidden bg-[#F4F0E8]">
                     <SafeImage
@@ -223,7 +223,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="lg:col-span-6 lg:order-1 -mt-8 mx-2 sm:mx-6 lg:mx-0 lg:mt-0 lg:-mr-16 relative z-10 bg-[#FAF8F4] text-[#18181B] border border-[#E2DACB] rounded-3xl p-6 sm:p-10 shadow-2xl">
+              <div className="lg:col-span-6 lg:order-1 -mt-8 mx-2 sm:mx-6 lg:mx-0 lg:mt-0 relative z-10 bg-[#FAF8F4] text-[#18181B] border border-[#E2DACB] rounded-3xl p-6 sm:p-10 shadow-2xl">
                 <div className="inline-flex items-center gap-2.5 text-[#8E3F27] text-[0.95rem] font-semibold">
                   <Palette className="w-5 h-5 shrink-0" aria-hidden="true" />
                   <span>A consulta</span>
