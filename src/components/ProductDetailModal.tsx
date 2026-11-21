@@ -45,7 +45,7 @@ export function ProductDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#0F1B33]/65 backdrop-blur-[2px] p-3 sm:p-6 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-[#0F1B33]/65 backdrop-blur-[2px] p-0 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-producto-titulo"
@@ -55,15 +55,23 @@ export function ProductDetailModal({
         }
       }}
     >
-      <div className="bg-[#FAF8F4] border border-[#E2DACB] rounded-2xl w-full max-w-4xl max-h-[92vh] overflow-y-auto shadow-2xl">
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-4 px-5 sm:px-8 py-4 bg-[#FAF8F4]/95 backdrop-blur-sm border-b border-[#E5DFD3]">
+      <div className="bg-[#FAF8F4] border-t sm:border border-[#E2DACB] rounded-t-[2rem] sm:rounded-3xl w-full max-w-4xl max-h-[92vh] flex flex-col overflow-hidden shadow-2xl">
+        {/* Grab handle on mobile */}
+        <div className="sm:hidden pt-3 pb-1 flex justify-center shrink-0">
+          <span
+            aria-hidden="true"
+            className="w-12 h-1.5 rounded-full bg-[#D1C8B8]"
+          />
+        </div>
+
+        <div className="flex items-center justify-between gap-4 px-5 sm:px-8 py-3.5 sm:py-4 bg-[#FAF8F4] border-b border-[#E5DFD3] shrink-0">
           <button
             type="button"
             onClick={onClose}
             className="inline-flex items-center gap-2 min-h-[46px] px-4 py-2 rounded-xl border border-[#CFC6B6] bg-white hover:border-[#16294E] hover:bg-[#F2F5FA] text-[#16294E] text-base font-semibold whitespace-nowrap transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5 shrink-0" aria-hidden="true" />
-            <span>Volver a los bastones</span>
+            <span>Volver</span>
           </button>
 
           <button
@@ -76,10 +84,10 @@ export function ProductDetailModal({
           </button>
         </div>
 
-        <div className="p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="overflow-y-auto flex-1 p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-8 items-start">
           <div className="lg:col-span-6 space-y-3">
-            <div className="p-2.5 bg-white border border-[#E5DFD3] rounded-2xl">
-              <div className="aspect-[4/3] w-full rounded-xl overflow-hidden bg-[#F4F0E8]">
+            <div className="p-2.5 bg-white border border-[#E5DFD3] rounded-t-[2.75rem] rounded-b-2xl">
+              <div className="aspect-[4/3] w-full rounded-t-[2.25rem] rounded-b-xl overflow-hidden bg-[#F4F0E8]">
                 <SafeImage
                   src={activeImage}
                   alt={activeAlt}
@@ -90,7 +98,7 @@ export function ProductDetailModal({
             </div>
 
             <div
-              className="grid grid-cols-2 gap-1.5 p-1.5 bg-[#EFEAE0] rounded-xl border border-[#E2DACB]"
+              className="grid grid-cols-2 gap-1.5 p-1.5 bg-[#EFEAE0] rounded-2xl border border-[#E2DACB]"
               role="group"
               aria-label={`Cambiar foto de ${product.name}`}
             >
@@ -98,7 +106,7 @@ export function ProductDetailModal({
                 type="button"
                 onClick={() => setPhotoView('general')}
                 aria-pressed={photoView === 'general'}
-                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-lg text-[0.95rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-3 py-2.5 rounded-xl text-[0.92rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
                   photoView === 'general'
                     ? 'bg-[#16294E] text-white shadow-xs'
                     : 'bg-transparent text-[#3F3B36] hover:bg-white'
@@ -112,7 +120,7 @@ export function ProductDetailModal({
                 type="button"
                 onClick={() => setPhotoView('detail')}
                 aria-pressed={photoView === 'detail'}
-                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-4 py-2.5 rounded-lg text-[0.95rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
+                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-3 py-2.5 rounded-xl text-[0.92rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
                   photoView === 'detail'
                     ? 'bg-[#16294E] text-white shadow-xs'
                     : 'bg-transparent text-[#3F3B36] hover:bg-white'
@@ -144,7 +152,7 @@ export function ProductDetailModal({
               {product.extendedDescription}
             </p>
 
-            <dl className="mt-6 p-5 rounded-xl bg-white border border-[#E5DFD3] grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-[0.95rem]">
+            <dl className="mt-6 p-5 rounded-2xl bg-white border border-[#E5DFD3] grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-[0.95rem]">
               <div>
                 <dt className="text-[0.85rem] font-medium text-[#6B645C]">
                   Tipo de bastón
@@ -173,7 +181,7 @@ export function ProductDetailModal({
               </div>
             </dl>
 
-            <div className="mt-8">
+            <div className="hidden sm:block mt-8">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -185,6 +193,19 @@ export function ProductDetailModal({
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Sticky mobile bottom CTA inside sheet */}
+        <div className="sm:hidden p-4 bg-[#FAF8F4] border-t border-[#E5DFD3] shrink-0">
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 w-full min-h-[54px] px-6 py-3 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-base font-semibold whitespace-nowrap transition-colors"
+          >
+            <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
+            <span>Consultar por WhatsApp</span>
+          </a>
         </div>
       </div>
     </div>

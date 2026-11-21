@@ -16,8 +16,8 @@ export function Header() {
   const whatsappHref = buildWhatsAppUrl(SITE_CONFIG.generalWhatsappMessage);
 
   return (
-    <header className="sticky top-0 z-30 bg-[#FAF8F4]/95 backdrop-blur-sm border-b border-[#E5DFD3]">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[76px] flex items-center justify-between gap-6">
+    <header className="relative md:sticky top-0 z-30 bg-[#FAF8F4]/95 backdrop-blur-sm border-b border-[#E5DFD3]">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[70px] sm:h-[76px] flex items-center justify-between gap-4 sm:gap-6">
         <a
           href="#inicio"
           aria-label="Caminemos Juntos — Ir al inicio"
@@ -47,7 +47,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Ver Instagram de Caminemos Juntos"
-            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-all"
+            className="hidden md:inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-all"
           >
             <Instagram className="w-5 h-5 shrink-0" aria-hidden="true" />
             <span>Instagram</span>
@@ -68,7 +68,8 @@ export function Header() {
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="menu-movil"
-            className="xl:hidden inline-flex items-center justify-center gap-2 min-h-[48px] px-4 rounded-xl border border-[#D8D0C2] bg-white text-[#18181B] font-semibold text-base whitespace-nowrap shrink-0 hover:bg-[#F3EFE6] transition-colors"
+            aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            className="xl:hidden inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3.5 rounded-xl border border-[#D8D0C2] bg-white text-[#18181B] font-semibold text-[0.95rem] whitespace-nowrap shrink-0 hover:bg-[#F3EFE6] transition-colors"
           >
             {mobileMenuOpen ? (
               <>
