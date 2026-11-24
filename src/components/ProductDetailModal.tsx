@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Eye, MessageCircle, X, ZoomIn } from 'lucide-react';
+import {
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  MessageCircle,
+  X,
+} from 'lucide-react';
 import { buildWhatsAppUrl, type CaneProduct } from '../data/catalog';
 import { SafeImage } from './SafeImage';
 
 interface ProductDetailModalProps {
   product: CaneProduct;
-  initialView?: 'general' | 'detail';
+  initialImageIndex?: number;
   onClose: () => void;
 }
 
 export function ProductDetailModal({
   product,
-  initialView = 'general',
+  initialImageIndex = 0,
   onClose,
 }: ProductDetailModalProps) {
-  const [photoView, setPhotoView] = useState<'general' | 'detail'>(initialView);
+  const [imageIndex, setImageIndex] = useState(initialImageIndex);
 
   useEffect(() => {
-    setPhotoView(initialView);
-  }, [product.id, initialView]);
+    setImageIndex(initialImageIndex);
+  }, [product.id, initialImageIndex]);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -27,6 +33,12 @@ export function ProductDetailModal({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onClose();
+      } else if (event.key === 'ArrowLeft' && product.images.length > 1) {
+        setImageIndex(
+          (prev) => (prev - 1 + product.images.length) % product.images.length
+        );
+      } else if (event.key === 'ArrowRight' && product.images.length > 1) {
+        setImageIndex((prev) => (prev + 1) % product.images.length);
       }
     };
 
@@ -35,13 +47,19 @@ export function ProductDetailModal({
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, product.images.length]);
 
-  const activeImage =
-    photoView === 'general' ? product.generalImage : product.detailImage;
-  const activeAlt =
-    photoView === 'general' ? product.generalAlt : product.detailAlt;
+  const totalImages = product.images.length;
+  const currentImage = product.images[imageIndex] ?? product.images[0];
   const whatsappUrl = buildWhatsAppUrl(product.whatsappMessage);
+
+  const handlePrev = () => {
+    setImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const handleNext = () => {
+    setImageIndex((prev) => (prev + 1) % totalImages);
+  };
 
   return (
     <div
@@ -84,77 +102,91 @@ export function ProductDetailModal({
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 p-5 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-7 sm:gap-8 items-start">
-          <div className="lg:col-span-6 space-y-3">
-            <div className="p-2.5 bg-white border border-[#E5DFD3] rounded-t-[2.75rem] rounded-b-2xl">
-              <div className="aspect-[4/3] w-full rounded-t-[2.25rem] rounded-b-xl overflow-hidden bg-[#F4F0E8]">
+        <div className="overflow-y-auto flex-1 p-4 sm:p-7 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-7 items-start">
+          <div className="lg:col-span-6 space-y-2.5">
+            <div className="relative p-2 bg-white border border-[#E5DFD3] rounded-t-[2.25rem] rounded-b-2xl">
+              <div className="relative h-[280px] sm:h-[340px] lg:h-[360px] w-full rounded-t-[1.75rem] rounded-b-xl overflow-hidden bg-[#F4ECE0]">
                 <SafeImage
-                  src={activeImage}
-                  alt={activeAlt}
+                  src={currentImage.src}
+                  alt={currentImage.alt}
                   fallbackTitle={product.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
+
+                {totalImages > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handlePrev}
+                      aria-label={`Imagen anterior de ${product.name}`}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-[#16294E] border border-[#D8D0C2] shadow-md flex items-center justify-center cursor-pointer transition-transform active:scale-95"
+                    >
+                      <ChevronLeft className="w-5 h-5" aria-hidden="true" />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      aria-label={`Imagen siguiente de ${product.name}`}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 hover:bg-white text-[#16294E] border border-[#D8D0C2] shadow-md flex items-center justify-center cursor-pointer transition-transform active:scale-95"
+                    >
+                      <ChevronRight className="w-5 h-5" aria-hidden="true" />
+                    </button>
+                  </>
+                )}
               </div>
             </div>
 
-            <div
-              className="grid grid-cols-2 gap-1.5 p-1.5 bg-[#EFEAE0] rounded-2xl border border-[#E2DACB]"
-              role="group"
-              aria-label={`Cambiar foto de ${product.name}`}
-            >
-              <button
-                type="button"
-                onClick={() => setPhotoView('general')}
-                aria-pressed={photoView === 'general'}
-                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-3 py-2.5 rounded-xl text-[0.92rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  photoView === 'general'
-                    ? 'bg-[#16294E] text-white shadow-xs'
-                    : 'bg-transparent text-[#3F3B36] hover:bg-white'
-                }`}
-              >
-                <Eye className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Foto general</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setPhotoView('detail')}
-                aria-pressed={photoView === 'detail'}
-                className={`inline-flex items-center justify-center gap-2 min-h-[48px] px-3 py-2.5 rounded-xl text-[0.92rem] font-semibold whitespace-nowrap transition-colors cursor-pointer ${
-                  photoView === 'detail'
-                    ? 'bg-[#16294E] text-white shadow-xs'
-                    : 'bg-transparent text-[#3F3B36] hover:bg-white'
-                }`}
-              >
-                <ZoomIn className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>Detalle del vinilo</span>
-              </button>
-            </div>
+            {totalImages > 1 && (
+              <div className="flex items-center justify-between gap-2 px-3 py-2 bg-[#EFEAE0] rounded-xl border border-[#E2DACB]">
+                <span className="text-[0.85rem] font-semibold text-[#3F3B36] truncate">
+                  {currentImage.label}
+                </span>
+                <div className="flex items-center gap-1 shrink-0">
+                  {product.images.map((img, idx) => (
+                    <button
+                      key={img.src}
+                      type="button"
+                      onClick={() => setImageIndex(idx)}
+                      aria-label={`Ver foto ${idx + 1}: ${img.label}`}
+                      aria-pressed={idx === imageIndex}
+                      className={`min-w-[34px] min-h-[34px] px-2 rounded-lg text-[0.85rem] font-semibold tabular-nums transition-colors cursor-pointer ${
+                        idx === imageIndex
+                          ? 'bg-[#16294E] text-white'
+                          : 'bg-white text-[#3F3B36] border border-[#D8D0C2] hover:bg-[#FAF8F4]'
+                      }`}
+                    >
+                      {idx + 1}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-6 flex flex-col">
-            <p className="text-[0.92rem] font-semibold text-[#8E3F27]">
+            <p className="text-[0.85rem] font-semibold text-[#8E3F27]">
               {product.collectionLabel}
             </p>
 
             <h2
               id="modal-producto-titulo"
-              className="font-display text-3xl font-bold text-[#18181B] mt-1.5 leading-snug"
+              className="font-display text-2xl sm:text-[1.65rem] font-bold text-[#18181B] mt-1 leading-snug"
             >
               {product.name}
             </h2>
 
-            <p className="mt-4 text-lg text-[#18181B] leading-relaxed font-medium">
+            <p className="mt-3 text-base text-[#18181B] leading-relaxed font-medium">
               {product.description}
             </p>
 
-            <p className="mt-3 text-base text-[#3F3B36] leading-relaxed">
+            <p className="mt-2.5 text-[0.95rem] text-[#3F3B36] leading-relaxed">
               {product.extendedDescription}
             </p>
 
-            <dl className="mt-6 p-5 rounded-2xl bg-white border border-[#E5DFD3] grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-[0.95rem]">
+            <dl className="mt-5 p-4 rounded-2xl bg-white border border-[#E5DFD3] grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-3 text-[0.9rem]">
               <div>
-                <dt className="text-[0.85rem] font-medium text-[#6B645C]">
+                <dt className="text-[0.8rem] font-medium text-[#6B645C]">
                   Tipo de bastón
                 </dt>
                 <dd className="font-semibold text-[#18181B] mt-0.5">
@@ -163,7 +195,7 @@ export function ProductDetailModal({
               </div>
 
               <div>
-                <dt className="text-[0.85rem] font-medium text-[#6B645C]">
+                <dt className="text-[0.8rem] font-medium text-[#6B645C]">
                   Altura
                 </dt>
                 <dd className="font-semibold text-[#18181B] mt-0.5 tabular-nums">
@@ -172,7 +204,7 @@ export function ProductDetailModal({
               </div>
 
               <div className="sm:col-span-2">
-                <dt className="text-[0.85rem] font-medium text-[#6B645C]">
+                <dt className="text-[0.8rem] font-medium text-[#6B645C]">
                   Diseño en vinilo
                 </dt>
                 <dd className="font-semibold text-[#18181B] mt-0.5">
@@ -181,14 +213,14 @@ export function ProductDetailModal({
               </div>
             </dl>
 
-            <div className="hidden sm:block mt-8">
+            <div className="hidden sm:block mt-6">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 w-full min-h-[56px] px-6 py-3.5 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-lg font-semibold whitespace-nowrap transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 w-full min-h-[50px] px-5 py-3 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-base font-semibold text-center transition-colors"
               >
-                <MessageCircle className="w-6 h-6 shrink-0" aria-hidden="true" />
+                <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
                 <span>Consultar este bastón por WhatsApp</span>
               </a>
             </div>
@@ -196,12 +228,12 @@ export function ProductDetailModal({
         </div>
 
         {/* Sticky mobile bottom CTA inside sheet */}
-        <div className="sm:hidden p-4 bg-[#FAF8F4] border-t border-[#E5DFD3] shrink-0">
+        <div className="sm:hidden p-3.5 bg-[#FAF8F4] border-t border-[#E5DFD3] shrink-0">
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 w-full min-h-[54px] px-6 py-3 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-base font-semibold whitespace-nowrap transition-colors"
+            className="inline-flex items-center justify-center gap-2.5 w-full min-h-[48px] px-5 py-2.5 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-[0.95rem] font-semibold text-center transition-colors"
           >
             <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
             <span>Consultar por WhatsApp</span>

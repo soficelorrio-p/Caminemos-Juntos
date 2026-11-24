@@ -1,5 +1,11 @@
 export type CaneCollectionId = 'primera' | 'madera';
 
+export interface CaneImage {
+  src: string;
+  alt: string;
+  label: string;
+}
+
 export interface CaneProduct {
   id: string;
   name: string;
@@ -11,10 +17,7 @@ export interface CaneProduct {
   fixedHeightNote: string;
   description: string;
   extendedDescription: string;
-  generalImage: string;
-  generalAlt: string;
-  detailImage: string;
-  detailAlt: string;
+  images: CaneImage[];
   whatsappMessage: string;
   accentHex: string;
   matTintHex: string;
@@ -106,103 +109,42 @@ export const CONTACT_CONTENT = {
 /**
  * CATÁLOGO DE PRODUCTOS (EDITABLE)
  * Podés agregar, quitar o modificar modelos cambiando nombre, altura en cm,
- * tipo de colección ('primera' o 'madera'), descripción y rutas de fotos.
+ * tipo de colección ('primera' o 'madera'), descripción e imágenes.
  */
 export const PRODUCTS: CaneProduct[] = [
   {
-    id: 'olivo-botanico',
-    name: 'Modelo Olivo Botánico',
-    collection: 'primera',
-    collectionLabel: 'Primera colección',
-    handleType: 'Mango clásico ergonómico',
-    vinylDesign: 'Vinilo impreso botánico verde oliva sobre marfil',
-    heightCm: 88,
-    fixedHeightNote: 'Fijo',
-    description:
-      'Un diseño sereno con hojas naturales en tonos oliva que aporta frescura y calidez para el uso diario.',
-    extendedDescription:
-      'Pensado para quienes disfrutan de los motivos naturales y luminosos. El vinilo botánico se aplica con terminación satinada suave al tacto y resistente al roce diario. Su mango clásico anatómico acompaña la palma de la mano de forma cómoda y segura.',
-    generalImage: '/src/assets/images/baston_botanico_general_1794832407309.jpg',
-    generalAlt:
-      'Vista completa del bastón Modelo Olivo Botánico con mango negro ergonómico y vinilo de hojas verde oliva',
-    detailImage: '/src/assets/images/baston_botanico_detalle_1794832408145.jpg',
-    detailAlt:
-      'Primer plano del detalle del vinilo botánico con hojas de olivo aplicado sobre el bastón',
-    whatsappMessage:
-      'Hola, quiero consultar por el bastón Modelo Olivo Botánico (Primera colección, 88 cm).',
-    accentHex: '#15603E',
-    matTintHex: '#EAF5EE',
-  },
-  {
-    id: 'indigo-clasico',
-    name: 'Modelo Índigo Clásico',
-    collection: 'primera',
-    collectionLabel: 'Primera colección',
-    handleType: 'Mango clásico ergonómico',
-    vinylDesign: 'Vinilo impreso geométrico azul índigo y arena',
-    heightCm: 90,
-    fixedHeightNote: 'Fijo',
-    description:
-      'Trama sobria y distinguida en azul profundo con líneas arena, pensada para combinar con cualquier vestimenta.',
-    extendedDescription:
-      'Ideal para quienes prefieren un estilo artístico geométrico en azul profundo, fácil de combinar tanto en salidas cotidianas como en ocasiones especiales. Su estructura fija evita ruidos o movimientos indeseados al caminar y brinda un apoyo estable en todo momento.',
-    generalImage: '/src/assets/images/baston_indigo_general_1794832408102.jpg',
-    generalAlt:
-      'Vista completa del bastón Modelo Índigo Clásico con mango negro anatómico y diseño geométrico azul índigo',
-    detailImage: '/src/assets/images/baston_indigo_detalle_1794832408819.jpg',
-    detailAlt:
-      'Primer plano del vinilo impreso geométrico azul índigo y arena sobre el cuerpo del bastón',
-    whatsappMessage:
-      'Hola, quiero consultar por el bastón Modelo Índigo Clásico (Primera colección, 90 cm).',
-    accentHex: '#1E40AF',
-    matTintHex: '#EBF1FD',
-  },
-  {
-    id: 'nogal-espiga',
-    name: 'Modelo Nogal Espiga',
+    id: 'jack-sparrow',
+    name: 'Bastón Jack Sparrow',
     collection: 'madera',
     collectionLabel: 'Nueva colección · Mango de madera',
     handleType: 'Mango de madera lustrada',
-    vinylDesign: 'Vinilo impreso espiga gris topo y grafito',
-    heightCm: 92,
+    vinylDesign: 'Vinilo impreso artístico Jack Sparrow, navío y brújula',
+    heightCm: 90,
     fixedHeightNote: 'Fijo',
     description:
-      'Elegancia clásica con mango curvo de madera lustrada al tacto suave y un diseño textil discreto en tonos neutros.',
+      'Diseño ilustrado inspirado en la aventura marítima, con brújula, navío y detalles en tonos cálidos sobre mapa antiguo.',
     extendedDescription:
-      'Parte de nuestra nueva colección con mango de madera. La calidez de la madera lustrada se combina con un vinilo de textura tipo espiga en tonos neutros, logrando un bastón sobrio, distinguido y muy agradable de llevar.',
-    generalImage: '/src/assets/images/baston_nogal_general_1794832409216.jpg',
-    generalAlt:
-      'Vista completa del bastón Modelo Nogal Espiga con mango de madera oscura y vinilo trama espiga',
-    detailImage: '/src/assets/images/baston_nogal_detalle_1794832411390.jpg',
-    detailAlt:
-      'Primer plano de la unión entre el mango de madera de nogal y el vinilo impreso con diseño espiga',
+      'Intervenido con vinilo impreso de alta definición en toda su extensión, acompañado por un mango curvo de madera lustrada con anillo dorado. Altura fija para brindar un apoyo firme y seguro.',
+    images: [
+      {
+        src: '/src/assets/images/jack-imagen1.jpg',
+        alt: 'Bastón Jack Sparrow junto al detalle extendido del diseño completo en vinilo',
+        label: 'Bastón y diseño',
+      },
+      {
+        src: '/src/assets/images/jack-imagen2.jpg',
+        alt: 'Vista completa del Bastón Jack Sparrow con mango de madera lustrada y regatón negro',
+        label: 'Bastón completo',
+      },
+      {
+        src: '/src/assets/images/jack-imagen3.jpg',
+        alt: 'Primer plano de la lámina del vinilo artístico de Jack Sparrow, barco y brújula',
+        label: 'Detalle del vinilo',
+      },
+    ],
     whatsappMessage:
-      'Hola, quiero consultar por el bastón Modelo Nogal Espiga (Nueva colección mango de madera, 92 cm).',
-    accentHex: '#9A3412',
-    matTintHex: '#FDF1E8',
-  },
-  {
-    id: 'roble-terracota',
-    name: 'Modelo Roble Terracota',
-    collection: 'madera',
-    collectionLabel: 'Nueva colección · Mango de madera',
-    handleType: 'Mango de madera natural',
-    vinylDesign: 'Vinilo impreso geométrico terracota y arena',
-    heightCm: 89,
-    fixedHeightNote: 'Fijo',
-    description:
-      'Mango cálido en madera natural combinado con un vinilo de trazos geométricos suaves en tonos tierra.',
-    extendedDescription:
-      'Un modelo con mucha personalidad y armonía visual. El mango en madera natural ofrece un agarre cálido y firme, mientras que el vinilo en tonos terracota, arena y espresso aporta un detalle artístico delicado y alegre.',
-    generalImage: '/src/assets/images/baston_terracota_general_1794832410589.jpg',
-    generalAlt:
-      'Vista completa del bastón Modelo Roble Terracota con mango de madera clara y vinilo geométrico cálido',
-    detailImage: '/src/assets/images/baston_terracota_detalle_1794832411462.jpg',
-    detailAlt:
-      'Primer plano del mango de roble natural junto al vinilo impreso en tonos terracota y arena',
-    whatsappMessage:
-      'Hola, quiero consultar por el bastón Modelo Roble Terracota (Nueva colección mango de madera, 89 cm).',
-    accentHex: '#B93822',
-    matTintHex: '#FCEEEB',
+      'Hola, quiero consultar por el Bastón Jack Sparrow.',
+    accentHex: '#8E3F27',
+    matTintHex: '#F4ECE0',
   },
 ];

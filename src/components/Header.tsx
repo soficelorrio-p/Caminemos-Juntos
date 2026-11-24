@@ -17,7 +17,7 @@ export function Header() {
 
   return (
     <header className="relative md:sticky top-0 z-30 bg-[#FAF8F4]/95 backdrop-blur-sm border-b border-[#E5DFD3]">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[70px] sm:h-[76px] flex items-center justify-between gap-4 sm:gap-6">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[64px] sm:h-[72px] flex items-center justify-between gap-3 sm:gap-6">
         <a
           href="#inicio"
           aria-label="Caminemos Juntos — Ir al inicio"
@@ -47,9 +47,9 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Ver Instagram de Caminemos Juntos"
-            className="hidden md:inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-all"
+            className="hidden md:inline-flex items-center justify-center gap-2 min-h-[42px] px-4 py-2 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-[0.92rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-all"
           >
-            <Instagram className="w-5 h-5 shrink-0" aria-hidden="true" />
+            <Instagram className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>Instagram</span>
           </a>
 
@@ -57,9 +57,9 @@ export function Header() {
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-[0.95rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-colors"
+            className="hidden md:inline-flex items-center gap-2 min-h-[42px] px-4 py-2 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-[0.92rem] font-semibold whitespace-nowrap shrink-0 shadow-xs transition-colors"
           >
-            <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
+            <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
             <span>WhatsApp</span>
           </a>
 
@@ -69,16 +69,16 @@ export function Header() {
             aria-expanded={mobileMenuOpen}
             aria-controls="menu-movil"
             aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
-            className="xl:hidden inline-flex items-center justify-center gap-1.5 min-h-[44px] px-3.5 rounded-xl border border-[#D8D0C2] bg-white text-[#18181B] font-semibold text-[0.95rem] whitespace-nowrap shrink-0 hover:bg-[#F3EFE6] transition-colors"
+            className="xl:hidden inline-flex items-center justify-center gap-1.5 min-h-[42px] px-3 rounded-xl border border-[#D8D0C2] bg-white text-[#18181B] font-semibold text-[0.9rem] whitespace-nowrap shrink-0 hover:bg-[#F3EFE6] transition-colors"
           >
             {mobileMenuOpen ? (
               <>
-                <X className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <X className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Cerrar</span>
               </>
             ) : (
               <>
-                <Menu className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <Menu className="w-4 h-4 shrink-0" aria-hidden="true" />
                 <span>Menú</span>
               </>
             )}
@@ -92,13 +92,13 @@ export function Header() {
           aria-label="Menú móvil"
           className="xl:hidden border-t border-[#E5DFD3] bg-[#FAF8F4] px-4 sm:px-6 py-4"
         >
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-1.5">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center min-h-[52px] px-4 rounded-xl text-lg font-medium text-[#18181B] hover:bg-[#EFEAE0] transition-colors"
+                  className="flex items-center min-h-[48px] px-4 rounded-xl text-base font-medium text-[#18181B] hover:bg-[#EFEAE0] transition-colors"
                 >
                   {link.label}
                 </a>
@@ -111,9 +111,9 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-3 w-full min-h-[54px] px-6 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-lg font-semibold transition-all"
+              className="flex items-center justify-center gap-2.5 w-full min-h-[48px] px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#7B2CBF] via-[#B82874] to-[#D62976] hover:brightness-95 text-white text-base font-semibold text-center transition-all"
             >
-              <Instagram className="w-6 h-6 shrink-0" aria-hidden="true" />
+              <Instagram className="w-5 h-5 shrink-0" aria-hidden="true" />
               <span>Ver Instagram</span>
             </a>
 
@@ -122,9 +122,9 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-3 w-full min-h-[54px] px-6 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-lg font-semibold transition-colors"
+              className="flex items-center justify-center gap-2.5 w-full min-h-[48px] px-5 py-2.5 rounded-xl bg-[#15603E] hover:bg-[#0F4A2F] text-white text-base font-semibold text-center transition-colors"
             >
-              <MessageCircle className="w-6 h-6 shrink-0" aria-hidden="true" />
+              <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
               <span>Consultar por WhatsApp</span>
             </a>
           </div>
