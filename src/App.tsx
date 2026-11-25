@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   ArrowDown,
+  Banknote,
   Instagram,
   MessageCircle,
   Palette,
@@ -21,24 +22,14 @@ import {
   HOW_IT_WORKS_STEPS,
   PRODUCTS,
   SITE_CONFIG,
-  type CaneCollectionId,
   type CaneProduct,
 } from './data/catalog';
 
-type CollectionFilter = 'all' | CaneCollectionId;
-
 export default function App() {
-  const [collectionFilter, setCollectionFilter] =
-    useState<CollectionFilter>('all');
   const [selectedDetail, setSelectedDetail] = useState<{
     product: CaneProduct;
     activeIndex: number;
   } | null>(null);
-
-  const filteredProducts =
-    collectionFilter === 'all'
-      ? PRODUCTS
-      : PRODUCTS.filter((item) => item.collection === collectionFilter);
 
   const generalWhatsappUrl = buildWhatsAppUrl(
     SITE_CONFIG.generalWhatsappMessage
@@ -129,100 +120,40 @@ export default function App() {
           className="py-12 sm:py-20 bg-atelier-canvas"
         >
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
-              <div className="max-w-2xl">
-                <h2
-                  id="bastones-titulo"
-                  className="font-display text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight"
-                >
-                  Nuestros bastones
-                </h2>
-                <p className="mt-1.5 text-base sm:text-[1.05rem] text-[#3F3B36] leading-relaxed">
-                  Bastones de altura fija con diseños exclusivos en vinilo.
-                </p>
-              </div>
-
-              <div
-                className="flex flex-wrap items-center gap-1.5 p-1.5 bg-[#EFEAE0] border border-[#E2DACB] rounded-2xl self-start w-full sm:w-auto"
-                role="group"
-                aria-label="Filtrar modelos por colección"
+            <div className="max-w-2xl">
+              <h2
+                id="bastones-titulo"
+                className="font-display text-2xl sm:text-3xl font-bold text-[#18181B] tracking-tight"
               >
-                <button
-                  type="button"
-                  onClick={() => setCollectionFilter('all')}
-                  aria-pressed={collectionFilter === 'all'}
-                  className={`flex-1 sm:flex-none min-h-[42px] px-3.5 py-2 rounded-xl text-[0.88rem] font-semibold text-center leading-tight transition-colors cursor-pointer ${
-                    collectionFilter === 'all'
-                      ? 'bg-[#16294E] text-white shadow-xs'
-                      : 'bg-transparent text-[#3F3B36] hover:bg-white'
-                  }`}
-                >
-                  Todos
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setCollectionFilter('primera')}
-                  aria-pressed={collectionFilter === 'primera'}
-                  className={`flex-1 sm:flex-none min-h-[42px] px-3.5 py-2 rounded-xl text-[0.88rem] font-semibold text-center leading-tight transition-colors cursor-pointer ${
-                    collectionFilter === 'primera'
-                      ? 'bg-[#16294E] text-white shadow-xs'
-                      : 'bg-transparent text-[#3F3B36] hover:bg-white'
-                  }`}
-                >
-                  Primera colección
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setCollectionFilter('madera')}
-                  aria-pressed={collectionFilter === 'madera'}
-                  className={`flex-1 sm:flex-none min-h-[42px] px-3.5 py-2 rounded-xl text-[0.88rem] font-semibold text-center leading-tight transition-colors cursor-pointer ${
-                    collectionFilter === 'madera'
-                      ? 'bg-[#16294E] text-white shadow-xs'
-                      : 'bg-transparent text-[#3F3B36] hover:bg-white'
-                  }`}
-                >
-                  Mango de madera
-                </button>
-              </div>
+                Nuestros bastones
+              </h2>
+              <p className="mt-1.5 text-base sm:text-[1.05rem] text-[#3F3B36] leading-relaxed">
+                Bastones de altura fija con mango de madera y diseños en vinilo.
+              </p>
             </div>
 
-            {filteredProducts.length === 0 ? (
-              <div className="mt-8 p-7 sm:p-9 rounded-3xl bg-white border border-[#E5DFD3] text-center max-w-xl mx-auto">
-                <p className="text-base text-[#3F3B36] leading-relaxed">
-                  Próximamente sumaremos modelos a esta colección.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setCollectionFilter('all')}
-                  className="mt-4 inline-flex items-center justify-center min-h-[44px] px-5 py-2 rounded-xl bg-[#16294E] hover:bg-[#0F1D38] text-white text-[0.95rem] font-semibold transition-colors cursor-pointer"
-                >
-                  Ver todos los modelos
-                </button>
-              </div>
-            ) : (
-              <div
-                className={
-                  filteredProducts.length === 1
-                    ? 'mt-8 max-w-[360px] sm:max-w-[380px] mx-auto'
+            <div
+              className={
+                PRODUCTS.length === 1
+                  ? 'mt-8 max-w-[360px] sm:max-w-[380px] mx-auto'
+                  : PRODUCTS.length === 2
+                    ? 'mt-8 max-w-[800px] mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8'
                     : 'mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7'
-                }
-              >
-                {filteredProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onOpenDetail={(clickedProduct, activeIndex) =>
-                      setSelectedDetail({
-                        product: clickedProduct,
-                        activeIndex,
-                      })
-                    }
-                  />
-                ))}
-              </div>
-            )}
+              }
+            >
+              {PRODUCTS.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onOpenDetail={(clickedProduct, activeIndex) =>
+                    setSelectedDetail({
+                      product: clickedProduct,
+                      activeIndex,
+                    })
+                  }
+                />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -426,6 +357,19 @@ export default function App() {
                     </span>
                     <span>@{SITE_CONFIG.instagramHandle}</span>
                   </a>
+                </div>
+
+                <div className="pt-4 border-t border-[#355188]">
+                  <p className="text-[0.85rem] font-medium text-[#C5D1EA]">
+                    Medios de pago
+                  </p>
+                  <p className="mt-1.5 inline-flex items-center gap-2.5 text-base font-semibold text-[#FAF8F4]">
+                    <Banknote
+                      className="w-5 h-5 text-[#A7E3C4] shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span>{SITE_CONFIG.paymentMethods}</span>
+                  </p>
                 </div>
               </div>
             </div>

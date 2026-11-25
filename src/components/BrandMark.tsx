@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import logoCj from '../assets/images/logo_cj.jpg';
 
 interface BrandMarkProps {
   inverted?: boolean;
@@ -11,7 +12,7 @@ export function BrandMark({ inverted = false }: BrandMarkProps) {
     <span className="inline-flex items-center gap-2 sm:gap-2.5 whitespace-nowrap shrink-0">
       {!imgError ? (
         <img
-          src="/src/assets/images/logo_cj.jpg"
+          src={logoCj}
           alt=""
           aria-hidden="true"
           onError={() => setImgError(true)}

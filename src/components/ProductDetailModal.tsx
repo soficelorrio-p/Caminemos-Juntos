@@ -5,8 +5,14 @@ import {
   ChevronRight,
   MessageCircle,
   X,
+  ZoomIn,
 } from 'lucide-react';
-import { buildWhatsAppUrl, type CaneProduct } from '../data/catalog';
+import {
+  buildWhatsAppUrl,
+  SITE_CONFIG,
+  type CaneProduct,
+} from '../data/catalog';
+import { ImageZoomModal } from './ImageZoomModal';
 import { SafeImage } from './SafeImage';
 
 interface ProductDetailModalProps {
@@ -21,9 +27,11 @@ export function ProductDetailModal({
   onClose,
 }: ProductDetailModalProps) {
   const [imageIndex, setImageIndex] = useState(initialImageIndex);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
 
   useEffect(() => {
     setImageIndex(initialImageIndex);
+    setIsZoomOpen(false);
   }, [product.id, initialImageIndex]);
 
   useEffect(() => {
@@ -31,6 +39,7 @@ export function ProductDetailModal({
     document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (isZoomOpen) return;
       if (event.key === 'Escape') {
         onClose();
       } else if (event.key === 'ArrowLeft' && product.images.length > 1) {
@@ -47,7 +56,7 @@ export function ProductDetailModal({
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose, product.images.length]);
+  }, [isZoomOpen, onClose, product.images.length]);
 
   const totalImages = product.images.length;
   const currentImage = product.images[imageIndex] ?? product.images[0];
@@ -106,12 +115,24 @@ export function ProductDetailModal({
           <div className="lg:col-span-6 space-y-2.5">
             <div className="relative p-2 bg-white border border-[#E5DFD3] rounded-t-[2.25rem] rounded-b-2xl">
               <div className="relative h-[280px] sm:h-[340px] lg:h-[360px] w-full rounded-t-[1.75rem] rounded-b-xl overflow-hidden bg-[#F4ECE0]">
-                <SafeImage
-                  src={currentImage.src}
-                  alt={currentImage.alt}
-                  fallbackTitle={product.name}
-                  className="w-full h-full object-contain"
-                />
+                <button
+                  type="button"
+                  onClick={() => setIsZoomOpen(true)}
+                  aria-label={`Ampliar imagen y hacer zoom: ${currentImage.label}`}
+                  className="block w-full h-full cursor-zoom-in group relative"
+                >
+                  <SafeImage
+                    src={currentImage.src}
+                    alt={currentImage.alt}
+                    fallbackTitle={product.name}
+                    className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                  />
+
+                  <span className="absolute right-2.5 bottom-2.5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/95 text-[#16294E] border border-[#D8D0C2] shadow-sm text-xs font-semibold pointer-events-none">
+                    <ZoomIn className="w-4 h-4 shrink-0" aria-hidden="true" />
+                    <span>Ampliar</span>
+                  </span>
+                </button>
 
                 {totalImages > 1 && (
                   <>
@@ -166,7 +187,7 @@ export function ProductDetailModal({
 
           <div className="lg:col-span-6 flex flex-col">
             <p className="text-[0.85rem] font-semibold text-[#8E3F27]">
-              {product.collectionLabel}
+              {product.materialLabel}
             </p>
 
             <h2
@@ -175,6 +196,10 @@ export function ProductDetailModal({
             >
               {product.name}
             </h2>
+
+            <p className="mt-2 text-2xl font-bold text-[#16294E] tabular-nums">
+              {product.price}
+            </p>
 
             <p className="mt-3 text-base text-[#18181B] leading-relaxed font-medium">
               {product.description}
@@ -211,6 +236,15 @@ export function ProductDetailModal({
                   {product.vinylDesign}
                 </dd>
               </div>
+
+              <div className="sm:col-span-2 pt-2 border-t border-[#EFEAE0]">
+                <dt className="text-[0.8rem] font-medium text-[#6B645C]">
+                  Medios de pago
+                </dt>
+                <dd className="font-semibold text-[#18181B] mt-0.5">
+                  {SITE_CONFIG.paymentMethods}
+                </dd>
+              </div>
             </dl>
 
             <div className="hidden sm:block mt-6">
@@ -240,6 +274,16 @@ export function ProductDetailModal({
           </a>
         </div>
       </div>
+
+      {isZoomOpen && (
+        <ImageZoomModal
+          productName={product.name}
+          images={product.images}
+          imageIndex={imageIndex}
+          onChangeImageIndex={setImageIndex}
+          onClose={() => setIsZoomOpen(false)}
+        />
+      )}
     </div>
   );
 }

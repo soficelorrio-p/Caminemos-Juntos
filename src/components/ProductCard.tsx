@@ -100,7 +100,7 @@ export function ProductCard({ product, onOpenDetail }: ProductCardProps) {
 
       <div className="p-5 flex-1 flex flex-col">
         <p className="text-[0.82rem] font-semibold text-[#8E3F27]">
-          {product.collectionLabel}
+          {product.materialLabel}
         </p>
 
         <h3 className="font-display text-xl sm:text-[1.35rem] font-bold text-[#18181B] mt-1 leading-snug">
@@ -112,6 +112,10 @@ export function ProductCard({ product, onOpenDetail }: ProductCardProps) {
             {product.name}
           </button>
         </h3>
+
+        <p className="mt-1.5 text-lg font-bold text-[#16294E] tabular-nums">
+          {product.price}
+        </p>
 
         <div className="mt-auto pt-4 border-t border-[#EEE8DC] grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <button
